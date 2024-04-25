@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TableCoin from "../modules/TableCoin";
 import { getCoin } from "../../services/CriptoApi";
-import Pagination from "../modules/pagination";
+// import Pagination from "../modules/pagination";
 import Search from "../modules/Search";
 import Chart from "../modules/Chart";
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import TableCoin from "../modules/TableCoin";
 import { getCoin } from "../../services/CriptoApi";
-// import Pagination from "../modules/pagination";
+import Paginationn from "../modules/paginationn";
 import Search from "../modules/Search";
 import Chart from "../modules/Chart";
 
@@ -37,7 +37,7 @@ function HomePage() {
     <>
       <Search currency={currency} setCurrency={setCurrency} />
       <TableCoin coins={coins} isLoaded={isLoaded} setChart={setChart} />
-{/*       {!isLoaded && <Pagination page={page} setPage={setPage} />} */}
+      {!isLoaded && <Paginationn page={page} setPage={setPage} />}
       {!!chart && <Chart chart={chart} setChart={setChart}/>}
     </>
   );

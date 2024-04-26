@@ -1,6 +1,6 @@
 import styels from "./Pagination.module.css";
 
-function Pagination({ page, setPage }) {
+function Paginationn({ page, setPage }) {
   const previousHandeler = () => {
     if (page > 1) {
       setPage((page) => page - 1);
@@ -34,4 +34,4 @@ function Pagination({ page, setPage }) {
   );
 }
 
-export default Pagination;
+export default Paginationn;

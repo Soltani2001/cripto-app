@@ -1,37 +1,35 @@
-import styels from "./Pagination.module.css";
-
-function Paginationn({ page, setPage }) {
-  const previousHandeler = () => {
-    if (page > 1) {
-      setPage((page) => page - 1);
-      console.log(page);
-    }
+// import "./styles.css";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import { Pagination } from "@mui/material";
+export default function App() {
+  const [page, setPage] = useState(1);
+  const [api, setApi] = useState([]);
+  useEffect(() => {
+    handleFetchData();
+  }, [page]);
+  const handleFetchData = async () => {
+    const resData = await axios.get(
+      `https://jsonplaceholder.typicode.com/todos?_page=${page}`
+    );
+    const data = await resData.data;
+    console.log("datas", data);
+    setApi(data);
   };
-
-  const nextHandeler = () => {
-    if (page < 10) {
-      setPage((page) => page + 1);
-      console.log(page);
-    }
-  };
-
   return (
-    <div className={styels.pagination}>
-      <button onClick={previousHandeler} className={page === 1 ? styels.disable : null}>previous</button>
-      <p className={page === 1 ? styels.selected : null}>{1}</p>
-      <p className={page === 2 ? styels.selected : null}>{2}</p>
-      {page > 2 && page < 9 && (
+    <div className="App">
+      {api.map((val) => (
         <>
-          <span>...</span>
-          <p className={styels.selected}>{page}</p>
+          <p>{val.title}</p>
         </>
-      )}
-      <span>...</span>
-      <p  className={page === 9 ? styels.selected : null}>9</p>
-      <p  className={page === 10 ? styels.selected : null}>10</p>
-      <button onClick={nextHandeler} className={page === 10 ? styels.disable : null}>next</button>
+      ))}
+
+      <Pagination
+        count={10}
+        color="primary"
+        onChange={(event, value) => setPage(value)}
+        page={page}
+      />
     </div>
   );
 }
-
-export default Paginationn;
